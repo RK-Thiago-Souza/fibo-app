@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t tfelix/fibo-test -f ./client/Dockerfile.dev ./client
+  - docker build -t tfelixti/fibo-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true tfelix/fibo-test npm run test
+  - docker run -e CI=true tfelixti/fibo-test npm run test
 
 after_success:
-  - docker build -t tfelix/fibo-client ./client
-  - docker build -t tfelix/fibo-nginx ./nginx
-  - docker build -t tfelix/fibo-server ./server
-  - docker build -t tfelix/fibo-worker ./worker
+  - docker build -t tfelixti/fibo-client ./client
+  - docker build -t tfelixti/fibo-nginx ./nginx
+  - docker build -t tfelixti/fibo-server ./server
+  - docker build -t tfelixti/fibo-worker ./worker
   # Log in to the Docker CI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #Take those images and push them to docker hub
-  - docker push tfelix/fibo-client
-  - docker push tfelix/fibo-nginx
-  - docker push tfelix/fibo-server
-  - docker push tfelix/fibo-worker
+  - docker push tfelixti/fibo-client
+  - docker push tfelixti/fibo-nginx
+  - docker push tfelixti/fibo-server
+  - docker push tfelixti/fibo-worker
