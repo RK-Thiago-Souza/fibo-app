@@ -22,3 +22,17 @@ after_success:
   - docker push tfelixti/fibo-nginx
   - docker push tfelixti/fibo-server
   - docker push tfelixti/fibo-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: fibo-app
+  env: FiboApp-env
+  bucket_name: elasticbeanstalk-us-east-2-801040296118
+  bucket_path: fibo-app
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
